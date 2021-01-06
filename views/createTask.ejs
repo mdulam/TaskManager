@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Create Task</title>
+<link rel="stylesheet" type="text/css" href="/assets/styles/task.css">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <%- include ('partials/header.ejs'); %>
+    <div class="container">
+        <form method="POST" action="/task">
+          <div class="row">
+            <div class="col-25">
+              <label for="name">Task Name</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="name" name="name" placeholder="Your name..">
+            </div>
+          </div>
+           <div class="row">
+            <div class="col-25">
+              <label for="type">Type</label>
+            </div>
+            <div class="col-75">
+              <select id="type" name="type">
+                <option value="office_task">Office Task</option>
+                <option value="home_task">Home Task</option>
+                <option value="personal_task">Personal Task</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="date">Date</label>
+            </div>
+            <div class="col-75">
+              <input type="date" id="date" name="date">
+            </div>
+          </div>
+         
+          <div class="row">
+            <div class="col-25">
+              <label for="details">Details</label>
+            </div>
+            <div class="col-75">
+              <textarea id="details" name="details" placeholder="Write something.." style="height:200px"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <input type="submit" value="Create Task">
+          </div>
+        </form>
+      </div>
+      
+      
+<%- include ('partials/footer.ejs'); -%>
+  
+</body>
+</html>

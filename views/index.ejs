@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Task Manager</title>
+<link rel="stylesheet" type="text/css" href="/assets/styles/task.css">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <%- include ('partials/header.ejs'); %>
+<div class="row">
+  <div class="column side">
+    <h2>Create tasks</h2>
+    <p>This section allows users to create a task with their specifications.</p>
+  </div>
+  
+  <div class="column middle">
+    <h2>Task Manager</h2>
+    <p>This web application allows users to manage tasks they wish.</p>
+    <p>Having a task manager is very important in our day to day life. So this application would help users to manage their tasks.</p>
+  </div>
+  
+  <div class="column side">
+    <h2>View tasks</h2>
+    <p>This section allows users to search tasks based on the names and also user can update or delete the tasks.</p>
+  </div>
+</div>
+
+<%- include ('partials/footer.ejs'); -%>
+  
+</body>
+</html>

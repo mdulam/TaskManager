@@ -2,8 +2,26 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const taskRoute = require("./routes/taskController.js");
+const mongoose = require("mongoose");
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+
 
 app.set('view engine','ejs');
+app.use('/assets',express.static('assets'));
+app.use('/partials', express.static('partials'));
+
+mongoose.connect(
+    //"mongodb+srv://SAIKUMAR112:Skerpina@112@midterm-cnomu.mongodb.net/test?retryWrites=true&w=majority",
+    "mongodb+srv://meghanareddy1506:meghana*1506@clustertask.yjvls.mongodb.net/TaskManager?retryWrites=true&w=majority",
+
+      {
+         useNewUrlParser: true,useUnifiedTopology:true 
+      }
+  );
+  mongoose.Promise = global.Promise;
+  
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -23,10 +41,25 @@ app.use((req, res, next) => {
   });
   
   app.get("/", (req, res)=>{
-    res.send("Hi ");
+    res.render('index');
+});
+
+app.get("/createTask", (req, res)=>{
+    res.render('createTask');
 });
 
 app.use("/task", taskRoute);
+
+db.once("open", function(){
+    app.listen(3000, function(){
+      console.log('Yola! Listening to port 3000');
+    });
+
+  });
+  
+  
+
+
 
   app.use((req, res, next) => {
     const error = new Error("Not found");
@@ -44,5 +77,5 @@ app.use("/task", taskRoute);
   });
   
   
-  app.listen(3000);
+ // app.listen(3000);
   
