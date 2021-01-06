@@ -5,6 +5,7 @@
 
 body {
   margin: 0;
+  
 }
 
 
@@ -61,7 +62,7 @@ body {
 }
 
 .footer {
-    position:fixed;
+    position: relative;
     color:white;
     left:0;
     bottom:0;
@@ -107,6 +108,9 @@ input[type=submit]:hover {
   padding: 20px;
 }
 
+#viewDiv{
+  min-height: 550px;
+}
 .col-25 {
   float: left;
   width: 25%;
@@ -146,3 +150,37 @@ th, td {
 
 tr:nth-child(even){background-color: #f2f2f2}
 
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background:black;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background:lightslategrey;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.error{
+  color: red;
+}

@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const taskRoute = require("./routes/taskController.js");
 const mongoose = require("mongoose");
+const task = require("./model/task");
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -13,7 +14,6 @@ app.use('/assets',express.static('assets'));
 app.use('/partials', express.static('partials'));
 
 mongoose.connect(
-    //"mongodb+srv://SAIKUMAR112:Skerpina@112@midterm-cnomu.mongodb.net/test?retryWrites=true&w=majority",
     "mongodb+srv://meghanareddy1506:meghana*1506@clustertask.yjvls.mongodb.net/TaskManager?retryWrites=true&w=majority",
 
       {
@@ -40,14 +40,27 @@ app.use((req, res, next) => {
     next();
   });
   
-  app.get("/", (req, res)=>{
+app.get("/", (req, res)=>{
     res.render('index');
 });
 
 app.get("/createTask", (req, res)=>{
-    res.render('createTask');
+    res.render('createTask',{errors:null});
 });
 
+app.post("/search",(req,res)=>{
+    if(req.body.name){
+        task.find({name:req.body.name}).exec().then(searchTask =>{
+            res.render('viewTask', {taskList:searchTask});
+        });
+    }
+    else{
+        task.find({}).exec().then(searchTask =>{
+            res.render('viewTask', {taskList:searchTask});
+        });
+    }
+    
+});
 app.use("/task", taskRoute);
 
 db.once("open", function(){
@@ -57,10 +70,6 @@ db.once("open", function(){
 
   });
   
-  
-
-
-
   app.use((req, res, next) => {
     const error = new Error("Not found");
     error.status = 404;
@@ -77,5 +86,5 @@ db.once("open", function(){
   });
   
   
- // app.listen(3000);
+
   

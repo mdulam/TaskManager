@@ -18,6 +18,8 @@
             </div>
             <div class="col-75">
               <input type="text" id="name" name="name" placeholder="Your name..">
+              <label class="error"><%if(errors) {%><%errors.forEach(function(error) {%><%if(error.param == 'name') {%><%-error.msg%><%}%><%})%><%}%></label>
+
             </div>
           </div>
            <div class="row">
@@ -26,10 +28,13 @@
             </div>
             <div class="col-75">
               <select id="type" name="type">
+                  
                 <option value="office_task">Office Task</option>
                 <option value="home_task">Home Task</option>
                 <option value="personal_task">Personal Task</option>
               </select>
+              <label class="error"><%if(errors) {%><%errors.forEach(function(error) {%><%if(error.param == 'type') {%><%-error.msg%><%}%><%})%><%}%></label>
+
             </div>
           </div>
           
@@ -39,6 +44,8 @@
             </div>
             <div class="col-75">
               <input type="date" id="date" name="date">
+              <label class="error"><%if(errors) {%><%errors.forEach(function(error) {%><%if(error.param == 'date') {%><%-error.msg%><%}%><%})%><%}%></label>
+
             </div>
           </div>
          
@@ -57,7 +64,9 @@
       </div>
       
       
-<%- include ('partials/footer.ejs'); -%>
+
   
 </body>
+
+<%- include ('partials/footer.ejs'); -%>
 </html>

@@ -3,76 +3,44 @@
 <head>
 <title>View Task</title>
 <link rel="stylesheet" type="text/css" href="/assets/styles/task.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <body>
     <%- include ('partials/header.ejs'); %>
-    <h2>Responsive Table</h2>
 
+    <div id="viewDiv">
+
+   
+    <h2>Tasks</h2>
+
+    <form class="example" method="POST" action="/search" style="margin:auto;max-width:300px">
+        <input type="text" placeholder="Search by Name.." name="name">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+      
     <div style="overflow-x:auto;">
       <table>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Points</th>
-          <th>Points</th>
-          <th>Points</th>
-          <th>Points</th>
-          <th>Points</th>
-          <th>Points</th>
-          <th>Points</th>
-          <th>Points</th>
-          <th>Points</th>
-          <th>Points</th>
-        </tr>
-        <tr>
-          <td>Jill</td>
-          <td>Smith</td>
-          <td>50</td>
-          <td>50</td>
-          <td>50</td>
-          <td>50</td>
-          <td>50</td>
-          <td>50</td>
-          <td>50</td>
-          <td>50</td>
-          <td>50</td>
-          <td>50</td>
-        </tr>
-        <tr>
-          <td>Eve</td>
-          <td>Jackson</td>
-          <td>94</td>
-          <td>94</td>
-          <td>94</td>
-          <td>94</td>
-          <td>94</td>
-          <td>94</td>
-          <td>94</td>
-          <td>94</td>
-          <td>94</td>
-          <td>94</td>
-        </tr>
-        <tr>
-          <td>Adam</td>
-          <td>Johnson</td>
-          <td>67</td>
-          <td>67</td>
-          <td>67</td>
-          <td>67</td>
-          <td>67</td>
-          <td>67</td>
-          <td>67</td>
-          <td>67</td>
-          <td>67</td>
-          <td>67</td>
-        </tr>
+          <tr>
+              <th> Name </th>
+              <th> Type </th>
+              <th> Date </th>
+              <th> Details </th>
+              
+          </tr>
+          <% taskList.forEach(function(task){ %>
+            <tr>
+                <td> <%=task.name %></td>
+                <td><%=task.type %></td>
+                <td><%=task.date %></td>
+                <td><%=task.details %></td>
+            </tr>
+            <% }); %> 
       </table>
     </div>
-    
+</div>
     
 
 <%- include ('partials/footer.ejs'); -%>
