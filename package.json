@@ -1,0 +1,27 @@
+{
+  "name": "taskmanager",
+  "version": "1.0.0",
+  "description": "A web application which manages tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdulam/TaskManager.git"
+  },
+  "author": "Sai Meghana Dulam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdulam/TaskManager/issues"
+  },
+  "homepage": "https://github.com/mdulam/TaskManager#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "git": "^0.1.5",
+    "mongoose": "^5.11.10",
+    "nodemon": "^2.0.6"
+  }
+}
