@@ -13,15 +13,27 @@ app.set('view engine','ejs');
 app.use('/assets',express.static('assets'));
 app.use('/partials', express.static('partials'));
 
-mongoose.connect(
-    "mongodb+srv://meghanareddy1506:meghana*1506@clustertask.yjvls.mongodb.net/TaskManager?retryWrites=true&w=majority",
 
-      {
-         useNewUrlParser: true,useUnifiedTopology:true 
-      }
-  );
-  mongoose.Promise = global.Promise;
-  
+ 
+function connect(){
+    return new Promise((resolve, reject)=>{
+        mongoose.connect(
+            "mongodb+srv://meghanareddy1506:meghana*1506@clustertask.yjvls.mongodb.net/TaskManager?retryWrites=true&w=majority",
+        
+              {
+                 useNewUrlParser: true,useUnifiedTopology:true 
+              }
+          ).then((res,err)=>{
+              if(err) return reject(err);
+              resolve();
+          })
+    });
+}
+mongoose.Promise = global.Promise;
+
+function close(){
+    return mongoose.disconnect();
+}
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -39,6 +51,8 @@ app.use((req, res, next) => {
     }
     next();
   });
+  
+  //connect();
   
 app.get("/", (req, res)=>{
     res.render('index');
@@ -63,12 +77,7 @@ app.post("/search",(req,res)=>{
 });
 app.use("/task", taskRoute);
 
-db.once("open", function(){
-    app.listen(3000, function(){
-      console.log('Yola! Listening to port 3000');
-    });
 
-  });
   
   app.use((req, res, next) => {
     const error = new Error("Not found");
@@ -84,7 +93,15 @@ db.once("open", function(){
       }
     });
   });
+
   
+  var server = app.listen(3000, function(){
+    connect().then(()=>{
+        console.log('App listening at'+3000);
+    })  
+  });
   
+
+  module.exports=server;
 
   

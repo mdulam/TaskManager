@@ -48,6 +48,7 @@ router.post("/",[
           });
       
           taskObject.save().then(result => {
+              res.body=req.body;
           res.redirect("/task");
           });
     }
